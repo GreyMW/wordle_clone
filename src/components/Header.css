@@ -1,0 +1,25 @@
+:root {
+    --header-title-width: 70%;
+    --header-flank-width: calc((100% - var(--header-title-width))/2);
+}
+
+.container {
+    color: red;
+    display: flex;
+
+}
+
+#header-hamburger {
+    width: var(--header-flank-width);
+    text-align: left;
+}
+
+#header-title {
+    width: var(--header-title-width);
+    text-align: center;
+}
+
+#header-icons {
+    width: var(--header-flank-width);
+    text-align: right;
+}
