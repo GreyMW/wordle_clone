@@ -3,7 +3,7 @@ function Header() {
     return (
         <div className={'container'}>
             <div id={'header-hamburger'}>
-                <h1>TODO: hamburger menu</h1>
+                <h1>hamburger menu</h1>
             </div>
             <div id={'header-title'}>
                 <h1>WORDLE CLONE</h1>
