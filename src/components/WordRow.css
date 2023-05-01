@@ -1,0 +1,11 @@
+@import "GlobalVariables.css";
+
+.card-container {
+    display: flex;
+    gap: var(--wordle-card-gap);
+    min-width: calc(5 * var(--wordle-card-width) + 6 * var(--wordle-card-gap));
+    margin: 0 auto;
+    justify-content: center;
+
+
+}

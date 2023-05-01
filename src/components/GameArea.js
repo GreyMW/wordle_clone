@@ -1,13 +1,14 @@
 import './GameArea.css';
+import WordRow from "./WordRow";
 function GameArea() {
     return (
-        <div>
-            <p>Guess: 1  and 5 letter boxes</p>
-            <p>Guess: 2  and 5 letter boxes</p>
-            <p>Guess: 3  and 5 letter boxes</p>
-            <p>Guess: 4  and 5 letter boxes</p>
-            <p>Guess: 5  and 5 letter boxes</p>
-            <p>Guess: 6  and 5 letter boxes</p>
+        <div className={'container-game-area'}>
+            <WordRow/>
+            <WordRow/>
+            <WordRow/>
+            <WordRow/>
+            <WordRow/>
+            <WordRow/>
         </div>
     )
 }

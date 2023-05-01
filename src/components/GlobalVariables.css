@@ -5,4 +5,8 @@
     --wordle-correct: #538d4e;
     --wordle-unchosen: #818384;
     --wordle-text-color: #ffffff;
+
+    --wordle-card-width: 60px;
+    --wordle-card-gap: 5px;
+    --wordle-card-font-size: 2rem;
 }

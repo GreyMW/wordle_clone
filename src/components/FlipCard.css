@@ -3,13 +3,14 @@
 }
 
 .flip-card-3D-wrapper {
-    width: 50px;
-    height: 50px;
+    width: var(--wordle-card-width);
+    height: var(--wordle-card-width);
     /*max-width: 300px;*/
     /*max-height: 500px;*/
     /*position: relative;*/
     perspective: 900px;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
+    margin: 0 0 var(--wordle-card-gap);
     /*background-color: red;*/
 }
 
@@ -40,25 +41,27 @@
     /*box-shadow: 5px 6px 32px 2px rgba(133,133,133,0.71);*/
     background: grey;
 
-    /*align-content: center;*/
-    /*text-align: center;*/
+    align-items: center;
     justify-content: center;
-
-
 }
+
 #flip-card .flip-card-front {
     /*background: lightgreen;*/
     border:1px solid grey;
 }
+
 #flip-card .flip-card-back {
     /*background: lightblue;*/
     border: 1px solid grey;
     transform: rotateX(180deg);
 }
+
 #flip-card .flip-card-front p, #flip-card .flip-card-back p {
-    color: white;
+    font-family: Arial, serif;
+    font-size: var(--wordle-card-font-size);
+    color: var(--wordle-text-color);
     display: block;
     position: absolute;
-    vertical-align: middle;
 
+    margin: auto 0;
 }
