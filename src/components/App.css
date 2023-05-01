@@ -1,9 +1,12 @@
+@import "GlobalVariables.css";
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
+
 html {
-    background: black;
+    background: var(--wordle-bg-color);
     color: white;
     margin: 0;
     padding: 0;

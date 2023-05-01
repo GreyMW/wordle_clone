@@ -1,0 +1,8 @@
+:root {
+    --wordle-bg-color: #121213;
+    --wordle-incorrect: #3a3a3c;
+    --wordle-correct-wrong-position: #b59f3b;
+    --wordle-correct: #538d4e;
+    --wordle-unchosen: #818384;
+    --wordle-text-color: #ffffff;
+}

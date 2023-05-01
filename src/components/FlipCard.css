@@ -1,9 +1,13 @@
+:root {
+    --wordle-bg-color: #121213;
+}
+
 .flip-card-3D-wrapper {
-    width: 300px;
-    height: 600px;
-    max-width: 300px;
-    max-height: 500px;
-    position: relative;
+    width: 50px;
+    height: 50px;
+    /*max-width: 300px;*/
+    /*max-height: 500px;*/
+    /*position: relative;*/
     perspective: 900px;
     margin: 0 auto;
     /*background-color: red;*/
@@ -12,11 +16,13 @@
 #flip-card {
     width: 100%;
     height: 100%;
-    text-align: center;
+
     margin: 0 auto;
     position: absolute;
     transition: all 1s ease-in-out;
     transform-style: preserve-3d;
+
+
 
 }
 .do-flip {
@@ -26,24 +32,33 @@
 #flip-card .flip-card-front, #flip-card .flip-card-back{
     width: 100%;
     height: 100%;
+    display: flex;
     backface-visibility: hidden;
+    /*this stacks the cards on top of one another*/
     position: absolute;
     /*z-index: 2;*/
-    box-shadow: 5px 6px 32px 2px rgba(133,133,133,0.71);
+    /*box-shadow: 5px 6px 32px 2px rgba(133,133,133,0.71);*/
+    background: grey;
+
+    /*align-content: center;*/
+    /*text-align: center;*/
+    justify-content: center;
+
+
 }
 #flip-card .flip-card-front {
-    background: lightgreen;
+    /*background: lightgreen;*/
     border:1px solid grey;
 }
 #flip-card .flip-card-back {
-    background: lightblue;
+    /*background: lightblue;*/
     border: 1px solid grey;
     transform: rotateX(180deg);
 }
 #flip-card .flip-card-front p, #flip-card .flip-card-back p {
-    color: grey;
+    color: white;
     display: block;
     position: absolute;
-    top: 40%;
-    width: 100%;
+    vertical-align: middle;
+
 }

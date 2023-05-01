@@ -8,11 +8,9 @@ function FlipCard() {
             <div id={"flip-card"}>
                 <div className={"flip-card-front"}>
                     <p>F</p>
-
                 </div>
                 <div className={"flip-card-back"}>
                     <p>B</p>
-
                 </div>
             </div>
         </div>

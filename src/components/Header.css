@@ -1,11 +1,21 @@
+@import "GlobalVariables.css";
+
 :root {
     --header-title-width: 70%;
     --header-flank-width: calc((100% - var(--header-title-width))/2);
 }
 
+h1 {
+    margin: 0;
+}
+
 .container {
-    color: red;
+    color: var(--wordle-text-color);
     display: flex;
+    border-style: solid;
+    border-color: var(--wordle-incorrect);
+    border-width: 0 0 1px 0;
+    margin: 0 0 2rem 0;
 
 }
 
@@ -15,8 +25,10 @@
 }
 
 #header-title {
+    font-family: 'Montagu Slab', serif;
     width: var(--header-title-width);
     text-align: center;
+
 }
 
 #header-icons {
