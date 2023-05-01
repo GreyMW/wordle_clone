@@ -20,13 +20,9 @@
 
 }
 .do-flip {
-    transform: rotateY(-180deg);
+    transform: rotateX(-180deg);
 }
-#flip-card-btn-turn-to-back, #flip-card-btn-turn-to-front {
 
-    padding: 5px;
-
-}
 #flip-card .flip-card-front, #flip-card .flip-card-back{
     width: 100%;
     height: 100%;
@@ -42,7 +38,7 @@
 #flip-card .flip-card-back {
     background: lightblue;
     border: 1px solid grey;
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
 }
 #flip-card .flip-card-front p, #flip-card .flip-card-back p {
     color: grey;

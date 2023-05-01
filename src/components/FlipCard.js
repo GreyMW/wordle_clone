@@ -8,12 +8,10 @@ function FlipCard() {
             <div id={"flip-card"}>
                 <div className={"flip-card-front"}>
                     <p>F</p>
-                    <button id={"flip-card-btn-turn-to-back"}>flip</button>
 
                 </div>
                 <div className={"flip-card-back"}>
                     <p>B</p>
-                    <button id={"flip-card-btn-turn-to-front"}>flip</button>
 
                 </div>
             </div>
@@ -22,7 +20,12 @@ function FlipCard() {
 }
 
 function flip(event) {
-    console.log(event.key)
+    // console.log(event.code);
+    // console.log(event);
+    if (event.code === 'Enter') {
+        console.log('Enter pressed');
+        document.getElementById('flip-card').classList.toggle('do-flip');
+    }
 }
 
 const useEnterHook = () => {
