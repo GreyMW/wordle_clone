@@ -1,8 +1,8 @@
 import './App.css';
-import Header from "./Header";
-import GameArea from "./GameArea";
-import Keyboard from "./Keyboard";
-import {useEnterHook} from "./FlipCard";
+import Header from "./header/Header";
+import GameArea from "./gameArea/GameArea";
+import Keyboard from "./keyboard/Keyboard";
+import {useEnterHook} from "./gameArea/FlipCard";
 
 
 function App() {

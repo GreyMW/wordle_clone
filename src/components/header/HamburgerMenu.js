@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './HamburgerMenu.css';
-import nyt_logo from '../images/New_York_Times_T_icon.png';
+import nyt_logo from '../../images/New_York_Times_T_icon.png';
 import {faArrowLeft, faArrowRight, faBars, faX} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

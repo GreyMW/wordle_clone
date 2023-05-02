@@ -1,4 +1,4 @@
-@import "GlobalVariables.css";
+@import "../GlobalVariables.css";
 
 .card-container {
     display: flex;
