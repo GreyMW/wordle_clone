@@ -1,4 +1,4 @@
 .container-game-area {
     width: calc(5 * var(--wordle-card-width) + 6 * var(--wordle-card-gap));
-    margin: 0 auto;
+    margin: 0 auto 3rem;
 }

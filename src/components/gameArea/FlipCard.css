@@ -57,7 +57,8 @@
 }
 
 #flip-card .flip-card-front p, #flip-card .flip-card-back p {
-    font-family: Arial, serif;
+    font-family: var(--font-play-area);
+    font-weight: var(--font-weight-play-area);
     font-size: var(--wordle-card-font-size);
     color: var(--wordle-text-color);
     display: block;

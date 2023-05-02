@@ -9,4 +9,9 @@
     --wordle-card-width: 62px;
     --wordle-card-gap: 6px;
     --wordle-card-font-size: 2rem;
+    --wordle-keyboard-font-size: 1rem;
+
+    --font-play-area: Arial, serif;
+    --font-weight-play-area: bold;
+    --font-weight-keyboard: bold;
 }
