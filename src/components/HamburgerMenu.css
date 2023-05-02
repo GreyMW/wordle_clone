@@ -1,0 +1,51 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+
+}
+
+.menu-list {
+    list-style: none;
+    position: absolute;
+    background: var(--wordle-bg-color);
+    top: 2.5rem;
+    left: 0;
+    width: 300px;
+    overflow: hidden;
+    max-width: 300px;
+    z-index: 9;
+    font-size: 18px;
+    box-shadow: 0 10px 15px 3px rgb(255 255 255 / 8%), 0 4px 6px -2px rgb(255 255 255 / 8%);
+    transform: translateX(-325px);
+    transition: transform ease-in-out 0.5s;
+     /*transition: width ease 0.2s; */
+
+    border-style: solid;
+    border-color: var(--wordle-incorrect);
+    border-width: 0 1px 1px 0;
+}
+
+.show-menu {
+    width: 100%;
+    transform: translateX(0px);
+
+}
+
+li {
+    display: block;
+    padding: 1rem;
+}

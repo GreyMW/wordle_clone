@@ -1,5 +1,10 @@
 @import "GlobalVariables.css";
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --header-title-width: 70%;
     --header-flank-width: calc((100% - var(--header-title-width))/2);
@@ -12,10 +17,12 @@ h1 {
 .container {
     color: var(--wordle-text-color);
     display: flex;
+    align-items: center;
     border-style: solid;
     border-color: var(--wordle-incorrect);
     border-width: 0 0 1px 0;
-    margin: 0 0 2rem 0;
+    margin: 0 0 calc(4rem + 2px) 0;
+    padding: 0.5rem 0;
 
 }
 
@@ -32,6 +39,10 @@ h1 {
 }
 
 #header-icons {
+    display: flex;
     width: var(--header-flank-width);
     text-align: right;
+    color: white;
+    justify-content: right;
+    gap: 10px;
 }
