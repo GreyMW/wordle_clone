@@ -3,6 +3,31 @@ html{
     padding: 0;
 }
 
+a {
+    font-family: Arial, serif;
+    color: var(--wordle-text-color);
+    text-decoration: none;
+    white-space: pre-wrap;
+}
+
+ul {
+    padding: 0;
+
+}
+
+li {
+    display: block;
+    padding: 1rem;
+}
+
+img {
+    height: 1rem;
+}
+
+.nyt-logo {
+    filter: invert(1);
+}
+
 .hamburger-menu {
     display: flex;
     align-items: center;
@@ -25,7 +50,7 @@ button {
     background: var(--wordle-bg-color);
     top: 3rem;
     left: 0;
-    width: 300px;
+    /*width: 300px;*/
     overflow: hidden;
     max-width: 300px;
     z-index: 9;
@@ -41,12 +66,8 @@ button {
 }
 
 .show-menu {
-    width: 100%;
+    /*width: 100%;*/
     transform: translateX(0px);
 
 }
 
-li {
-    display: block;
-    padding: 1rem;
-}
