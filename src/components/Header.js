@@ -17,7 +17,7 @@ function Header() {
                 {/*<h1 ><FontAwesomeIcon icon={faEnvelope} /></h1>*/}
                 <h1><FontAwesomeIcon icon={faCircleQuestion} /></h1>
                 <h1><FontAwesomeIcon icon={faChartSimple} /></h1>
-                <h1><FontAwesomeIcon icon={faGear} /></h1>
+                <h1 className={'right-icon'}><FontAwesomeIcon icon={faGear} /></h1>
             </div>
         </div>
     );
