@@ -6,6 +6,7 @@ let gameState = {
     max_row: 4,
     max_col: 5,
     guess: "",
+    answer: "spice",
 }
 const useKeyboardListener = () => {
     useEffect(() => {
@@ -43,25 +44,41 @@ function handleLetter(key) {
     if (gameState.guess.length < gameState.max_row + 1) {
         gameState.guess += key;
         updateLetters();
-        // console.log("Added the letter to guess: " + gameState.guess);
+        console.log("Added the letter to guess: " + gameState.guess);
     }
 }
 
 function handleEnter() {
     //TODO
+    if (gameState.guess.length !== 5) {
+        console.log("Not enough letters");
+        return;
+    }
+
+    console.log("Word submitted");
+    submitWord();
 }
 
 function handleBackspace() {
     if (gameState.guess.length > 0) {
         gameState.guess = gameState.guess.slice(0,gameState.guess.length-1);
+        console.log("Removed a letter from guess: " + gameState.guess);
         updateLetters();
-        // console.log("Removed a letter from guess: " + gameState.guess);
     }
 }
 
 function updateLetters() {
     //TODO
 }
+
+function setAnswer() {
+    //TODO
+}
+
+function submitWord() {
+    //TODO
+}
+
 
 function validateInput(event){
     const isLetter = event.key.length === 1 && event.key.match(/[a-zA-Z]/i) != null;
