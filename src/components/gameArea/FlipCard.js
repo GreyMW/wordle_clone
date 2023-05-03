@@ -1,5 +1,4 @@
 import './FlipCard.css';
-import {useEffect} from "react";
 
 function FlipCard(props) {
     const row_col = String(props.row) + String(props.col);
@@ -18,25 +17,4 @@ function FlipCard(props) {
     )
 }
 
-function flip(event) {
-    // console.log(event.code);
-    // console.log(event);
-    if (event.code === 'Enter') {
-        console.log('Enter pressed');
-        document.getElementById('01').classList.toggle('do-flip');
-    }
-}
-
-const useEnterHook = () => {
-    useEffect(() => {
-        window.addEventListener('keydown', flip);
-
-        return () => {
-            window.removeEventListener('keydown', flip);
-        }
-    }, [])
-
-
-}
 export default FlipCard;
-export {flip, useEnterHook};
