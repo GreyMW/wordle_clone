@@ -1,16 +1,17 @@
 import './FlipCard.css';
 import {useEffect} from "react";
 
-function FlipCard() {
+function FlipCard(props) {
+    const row_col = ""+props.row + props.col;
     return (
 
         <div className={"flip-card-3D-wrapper"}>
-            <div id={"flip-card"}>
+            <div id={"flip-card"} className={row_col}>
                 <div className={"flip-card-front"}>
-                    <p>F</p>
+                    <p>{row_col}</p>
                 </div>
                 <div className={"flip-card-back"}>
-                    <p>B</p>
+                    <p>Back {row_col}</p>
                 </div>
             </div>
         </div>

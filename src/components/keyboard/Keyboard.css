@@ -1,32 +1,31 @@
 @import "../GlobalVariables.css";
 
 .keyboard-area {
-    /*display: flex;*/
-    /*align-items: center;*/
-    justify-content: center;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     padding: var(--wordle-card-gap) 0;
 }
+
 .keyboard-row {
     padding-bottom: var(--wordle-card-gap);
     display: flex;
     justify-content: center;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
 }
 
 .keyboard-button {
+    cursor: pointer;
     font-family: var(--font-play-area);
     font-size: var(--wordle-keyboard-font-size);
     font-weight: var(--font-weight-keyboard);
     background: grey;
     border-radius: 5px;
-    padding: 1rem 0.75rem;
-    margin: 0 var(--wordle-card-gap) 0 0;
+    padding: 1.3rem 0.75rem;
+    margin: 0 var(--wordle-keyboard-gap) 0 0;
 }
 
 .keyboard-button:not(#ENTER, #BACKSPACE) {
-    min-width: 40px;
-    max-width: 40px;
+    min-width: 45px;
+    max-width: 45px;
 }
 
 #ENTER {
