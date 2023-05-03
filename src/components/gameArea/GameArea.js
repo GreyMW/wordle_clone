@@ -12,7 +12,7 @@ function GameArea() {
 
 function createWordRow(row_num){
     return (
-        <WordRow row={row_num}/>
+        <WordRow row={row_num} key={row_num}/>
     )
 }
 

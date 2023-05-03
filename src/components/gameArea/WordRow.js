@@ -13,7 +13,7 @@ function WordRow(props) {
 
 function createFlipCards(row, col){
     return (
-        <FlipCard row={row} col={col}/>
+        <FlipCard row={row} col={col} key={col}/>
     )
 }
 

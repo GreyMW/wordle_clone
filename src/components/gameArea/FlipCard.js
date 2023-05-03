@@ -2,11 +2,11 @@ import './FlipCard.css';
 import {useEffect} from "react";
 
 function FlipCard(props) {
-    const row_col = ""+props.row + props.col;
+    const row_col = String(props.row) + String(props.col);
     return (
 
         <div className={"flip-card-3D-wrapper"}>
-            <div id={"flip-card"} className={row_col}>
+            <div id={row_col} className={"flip-card"}>
                 <div className={"flip-card-front"}>
                     <p>{row_col}</p>
                 </div>
@@ -23,7 +23,7 @@ function flip(event) {
     // console.log(event);
     if (event.code === 'Enter') {
         console.log('Enter pressed');
-        document.getElementById('flip-card').classList.toggle('do-flip');
+        document.getElementById('01').classList.toggle('do-flip');
     }
 }
 

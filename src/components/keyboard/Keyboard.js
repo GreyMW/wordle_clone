@@ -7,7 +7,7 @@ function Keyboard() {
     function createLetterComponent(letter){
         letter = letter.toUpperCase()
         return (
-            <button className={'keyboard-button'} id={letter}>{letter}</button>
+            <button className={'keyboard-button'} id={letter} key={letter}>{letter}</button>
         )
     }
 
