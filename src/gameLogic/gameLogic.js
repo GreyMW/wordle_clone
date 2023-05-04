@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import initialLetterGrid from "./letterGrid";
 import words from "./wordSelection";
 
+
 let gameState = {
     row: 0,
     col: 0,
@@ -13,6 +14,8 @@ let gameState = {
     playable: true,
     wordList: words
 }
+
+setAnswer();
 
 // const useKeyboardListener = (state) => {
 function useKeyboardListener(setGridState) {
@@ -99,8 +102,11 @@ function updateLetters(setGridState) {
 
 }
 
-// function setAnswer() {
-// }
+function setAnswer() {
+    let randomNum = Math.round(Math.random() * words.length);
+    console.log("Answer: " + words[randomNum].toUpperCase());
+    gameState.answer = words[randomNum].toUpperCase();
+}
 
 function submitWord() {
     if (gameState.guess === gameState.answer) {
