@@ -4,11 +4,12 @@ import initialLetterGrid from "./letterGrid";
 let gameState = {
     row: 0,
     col: 0,
-    max_row: 4,
-    max_col: 5,
+    max_row: 5,
+    max_col: 4,
     guess: "",
     answer: "SPICE",
     letterGrid: initialLetterGrid,
+    playable: true,
 }
 
 // const useKeyboardListener = (state) => {
@@ -28,6 +29,10 @@ function useKeyboardListener(setGridState) {
 }
 
 function handleKeyboardEvent(event, setGridState){
+    if (!gameState.playable) {
+        return;
+    }
+
     let [isLetter, isEnter,isBackspace ] = validateInput(event);
 
     if (isLetter) {
@@ -47,7 +52,7 @@ function handleKeyboardEvent(event, setGridState){
 }
 
 function handleLetter(key, setGridState) {
-    if (gameState.guess.length < gameState.max_row + 1) {
+    if (gameState.guess.length < gameState.max_col + 1) {
         gameState.guess += key;
         updateLetters(setGridState);
         console.log("Added the letter to guess: " + gameState.guess);
@@ -92,12 +97,26 @@ function updateLetters(setGridState) {
 
 }
 
-function setAnswer() {
-    //TODO
-}
+// function setAnswer() {
+// }
 
 function submitWord() {
-    //TODO
+    if (gameState.guess === gameState.answer) {
+        console.log("You win!");
+        gameState.playable = false;
+        //TODO: function to handle winning
+        return;
+    }
+
+    if (gameState.row === gameState.max_row) {
+        console.log("You lose!");
+        gameState.playable = false;
+        //TODO: function to handle losing
+        return;
+    }
+    gameState.guess = "";
+    gameState.row += 1;
+
 }
 
 
