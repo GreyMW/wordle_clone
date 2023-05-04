@@ -1,7 +1,7 @@
 import {createContext} from "react";
 
 let initialLetterGrid =
-    [["a","b","c","d","e"],
+    [["","","","",""],
     ["","","","",""],
     ["","","","",""],
     ["","","","",""],

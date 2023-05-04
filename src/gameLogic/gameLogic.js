@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import initialLetterGrid from "./letterGrid";
+import words from "./wordSelection";
 
 let gameState = {
     row: 0,
@@ -10,6 +11,7 @@ let gameState = {
     answer: "SPICE",
     letterGrid: initialLetterGrid,
     playable: true,
+    wordList: words
 }
 
 // const useKeyboardListener = (state) => {
