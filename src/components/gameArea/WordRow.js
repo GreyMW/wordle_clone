@@ -2,6 +2,7 @@ import FlipCard from "./FlipCard";
 import './WordRow.css';
 
 function WordRow(props) {
+
     const numCols = [...Array(5).keys()];
 
     return (

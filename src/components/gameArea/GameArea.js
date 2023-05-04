@@ -1,6 +1,8 @@
 import './GameArea.css';
 import WordRow from "./WordRow";
+
 function GameArea() {
+
     const rows = [...Array(6).keys()];
 
     return (

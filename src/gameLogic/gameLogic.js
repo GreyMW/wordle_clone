@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import initialLetterGrid from "./letterGrid";
 
 let gameState = {
     row: 0,
@@ -6,26 +7,31 @@ let gameState = {
     max_row: 4,
     max_col: 5,
     guess: "",
-    answer: "spice",
+    answer: "SPICE",
+    letterGrid: initialLetterGrid,
 }
-const useKeyboardListener = () => {
+
+// const useKeyboardListener = (state) => {
+function useKeyboardListener(setGridState) {
     useEffect(() => {
-        window.addEventListener('keydown', handleKeyboardEvent);
+
+        function keyEventListener(e) {
+            handleKeyboardEvent(e, setGridState)
+        }
+
+        window.addEventListener('keydown', keyEventListener);
 
         return () => {
-            window.removeEventListener('keydown', handleKeyboardEvent);
+            window.removeEventListener('keydown', keyEventListener);
         }
     }, [])
 }
 
-
-
-function handleKeyboardEvent(event){
-
+function handleKeyboardEvent(event, setGridState){
     let [isLetter, isEnter,isBackspace ] = validateInput(event);
 
     if (isLetter) {
-        handleLetter(event.key.toUpperCase());
+        handleLetter(event.key.toUpperCase(), setGridState);
         return;
     }
 
@@ -35,21 +41,21 @@ function handleKeyboardEvent(event){
     }
 
     if (isBackspace) {
-        handleBackspace();
+        handleBackspace(setGridState);
     }
 
 }
 
-function handleLetter(key) {
+function handleLetter(key, setGridState) {
     if (gameState.guess.length < gameState.max_row + 1) {
         gameState.guess += key;
-        updateLetters();
+        updateLetters(setGridState);
         console.log("Added the letter to guess: " + gameState.guess);
     }
 }
 
 function handleEnter() {
-    //TODO
+
     if (gameState.guess.length !== 5) {
         console.log("Not enough letters");
         return;
@@ -59,16 +65,31 @@ function handleEnter() {
     submitWord();
 }
 
-function handleBackspace() {
+function handleBackspace(setGridState) {
     if (gameState.guess.length > 0) {
         gameState.guess = gameState.guess.slice(0,gameState.guess.length-1);
         console.log("Removed a letter from guess: " + gameState.guess);
-        updateLetters();
+        updateLetters(setGridState);
     }
 }
 
-function updateLetters() {
-    //TODO
+function updateLetters(setGridState) {
+
+    const guessWithPadding = (gameState.guess + "     ").slice(0,5);
+
+    //spread the letters into an array
+    let asArray = [];
+    for (let i in guessWithPadding) {
+        asArray.push(guessWithPadding[i]);
+    }
+
+    gameState.letterGrid[gameState.row] = asArray;
+    //the React app will not re-render if it is not supplied a new array
+    //as if the values in the old array were just updated then it's still the same array but with new values.
+    let newState = structuredClone(gameState.letterGrid);
+
+    setGridState(newState);
+
 }
 
 function setAnswer() {
