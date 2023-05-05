@@ -17,11 +17,11 @@ let gameState = {
 setAnswer();
 
 // const useKeyboardListener = (state) => {
-function useKeyboardListener(setGridState) {
+function useKeyboardListener(setGridState, setColorGrid, setKeyboardColorGrid) {
     useEffect(() => {
 
         function keyEventListener(e) {
-            handleKeyboardEvent(e, setGridState)
+            handleKeyboardEvent(e, setGridState, setColorGrid, setKeyboardColorGrid)
         }
 
         window.addEventListener('keydown', keyEventListener);

@@ -52,15 +52,15 @@
 }
 
 .flip-card .letter-color-grey {
-    background: grey;
+    background: var(--wordle-incorrect);
 }
 
 .flip-card .letter-color-yellow {
-
+    background: var(--wordle-correct-wrong-position);
 }
 
 .flip-card .letter-color-green {
-
+    background: var(--wordle-correct);
 }
 
 .flip-card .red {
