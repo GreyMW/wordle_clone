@@ -1,7 +1,6 @@
 import {useEffect} from "react";
-import initialLetterGrid from "./letterGrid";
+import initialLetterGrid, {initialColorGrid, initialKeyboardColors} from "./letterGrid";
 import words from "./wordSelection";
-
 
 let gameState = {
     row: 0,
@@ -9,8 +8,10 @@ let gameState = {
     max_row: 5,
     max_col: 4,
     guess: "",
-    answer: "SPICE",
+    answer: "",
     letterGrid: initialLetterGrid,
+    colorGrid: initialColorGrid,
+    keyboardColors: initialKeyboardColors,
     playable: true,
 }
 
@@ -32,7 +33,7 @@ function useKeyboardListener(setGridState, setColorGrid, setKeyboardColorGrid) {
     }, [])
 }
 
-function handleKeyboardEvent(event, setGridState){
+function handleKeyboardEvent(event, setGridState, setColorGrid, setKeyboardColorGrid){
     if (!gameState.playable) {
         return;
     }
@@ -45,7 +46,7 @@ function handleKeyboardEvent(event, setGridState){
     }
 
     if (isEnter) {
-        handleEnter();
+        handleEnter(setColorGrid, setKeyboardColorGrid);
         return;
     }
 
@@ -63,15 +64,16 @@ function handleLetter(key, setGridState) {
     }
 }
 
-function handleEnter() {
+function handleEnter(setColorGrid, setKeyboardColorGrid) {
 
     if (gameState.guess.length !== 5) {
+        //TODO: row wiggle and popup when not enough letters
         console.log("Not enough letters");
         return;
     }
 
     console.log("Word submitted");
-    submitWord();
+    submitWord(setColorGrid, setKeyboardColorGrid);
 }
 
 function handleBackspace(setGridState) {
@@ -107,7 +109,11 @@ function setAnswer() {
     gameState.answer = words[randomNum].toUpperCase();
 }
 
-function submitWord() {
+function submitWord(setColorGrid, setKeyboardColorGrid) {
+
+    updateGridColor(setColorGrid);
+    updateKeyboardColor(setKeyboardColorGrid);
+
     if (gameState.guess === gameState.answer) {
         console.log("You win!");
         gameState.playable = false;
@@ -126,6 +132,44 @@ function submitWord() {
 
 }
 
+function updateGridColor(setColorGrid){
+    let newState = structuredClone(gameState.colorGrid);
+
+    gameState.colorGrid[gameState.row] = gameState.colorGrid[gameState.row].map(() => "grey");
+    newState[gameState.row] = newState[gameState.row].map(() => "grey");
+
+    let answerCorrectLettersRemoved = gameState.answer;
+    let guessCorrectLettersRemoved = gameState.guess;
+
+    for (let index in gameState.guess) {
+        if (gameState.guess[index] === gameState.answer[index]) {
+            gameState.colorGrid[gameState.row][index] = "green";
+            newState[gameState.row][index] = "green";
+            answerCorrectLettersRemoved = setCharAt(answerCorrectLettersRemoved,Number(index),"+");
+            guessCorrectLettersRemoved = setCharAt(guessCorrectLettersRemoved,Number(index),"-");
+        }
+    }
+
+    let answerSet = new Set(answerCorrectLettersRemoved);
+    for (let index in guessCorrectLettersRemoved) {
+        if (answerSet.has(guessCorrectLettersRemoved[index])) {
+            answerCorrectLettersRemoved = answerCorrectLettersRemoved.replace(guessCorrectLettersRemoved[index], "+");
+            answerSet = new Set(answerCorrectLettersRemoved);
+            gameState.colorGrid[gameState.row][index] = "yellow";
+            newState[gameState.row][index] = "yellow";
+        }
+    }
+
+    setColorGrid(newState);
+}
+
+function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substring(0,index) + chr + str.substring(index+1);
+}
+function updateKeyboardColor(setKeyboardColorGrid){
+
+}
 
 function validateInput(event){
     const isLetter = event.key.length === 1 && event.key.match(/[a-zA-Z]/i) != null;
