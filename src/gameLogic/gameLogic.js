@@ -12,7 +12,6 @@ let gameState = {
     answer: "SPICE",
     letterGrid: initialLetterGrid,
     playable: true,
-    wordList: words
 }
 
 setAnswer();

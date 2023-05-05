@@ -4,12 +4,12 @@ import GameArea from "./gameArea/GameArea";
 import Keyboard from "./keyboard/Keyboard";
 import {useKeyboardListener} from "../gameLogic/gameLogic";
 import {useState} from "react";
-import initialLetterGrid, {letterGridContext} from "../gameLogic/letterGrid";
+import initialLetterGrid, {letterGridContext, letterColorContext, initialColorGrid} from "../gameLogic/letterGrid";
 
 function App() {
 
     const [letterGrid, setLetterGrid] = useState(initialLetterGrid);
-
+    const [colorGrid, setcolorGrid] = useState(initialColorGrid);
 
     useKeyboardListener(setLetterGrid);
 
@@ -17,9 +17,11 @@ function App() {
         <div className="App">
             <Header/>
 
-            <letterGridContext.Provider value={letterGrid}>
-                <GameArea/>
-            </letterGridContext.Provider>
+            <letterColorContext.Provider value={colorGrid}>
+                <letterGridContext.Provider value={letterGrid}>
+                    <GameArea/>
+                </letterGridContext.Provider>
+            </letterColorContext.Provider>
 
             <Keyboard/>
         </div>

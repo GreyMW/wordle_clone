@@ -30,7 +30,8 @@
     backface-visibility: hidden;
     /*this stacks the cards on top of one another*/
     position: absolute;
-    background: grey;
+    background: var(--wordle-bg-color);
+    border: 1px solid grey;
     align-items: center;
     justify-content: center;
 }
@@ -44,7 +45,24 @@
     font-weight: var(--font-weight-play-area);
     font-size: var(--wordle-card-font-size);
     color: var(--wordle-text-color);
+    /*color: grey;*/
     display: block;
     position: absolute;
     margin: auto 0;
+}
+
+.flip-card .letter-color-grey {
+    background: grey;
+}
+
+.flip-card .letter-color-yellow {
+
+}
+
+.flip-card .letter-color-green {
+
+}
+
+.flip-card .red {
+    background: red;
 }
