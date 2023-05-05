@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import initialLetterGrid, {initialColorGrid, initialKeyboardColors} from "./letterGrid";
+import initialLetterGrid, {initialColorGrid, initialKeyboardColors} from "./stateGrids";
 import words from "./wordSelection";
 
 let gameState = {

@@ -1,20 +1,16 @@
 import {createContext} from "react";
 
-let initialLetterGrid =
-    [["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""]];
+let initialLetterGrid = Array(6).fill(Array(5).fill(""));
+let initialColorGrid = Array(6).fill(Array(5).fill(""));
 
-let initialColorGrid =
-    [["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""],
-    ["","","","",""]];
+let initialFlipGrid = Array(6).fill(Array(5).fill(""));
+
+    // [["","","","",""],
+    // ["","","","",""],
+    // ["","","","",""],
+    // ["","","","",""],
+    // ["","","","",""],
+    // ["","","","",""]];
 
 let initialKeyboardColors = Array(28).fill("");
 

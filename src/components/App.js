@@ -4,7 +4,7 @@ import GameArea from "./gameArea/GameArea";
 import Keyboard from "./keyboard/Keyboard";
 import {useKeyboardListener} from "../gameLogic/gameLogic";
 import {useState} from "react";
-import initialLetterGrid, {letterGridContext, letterColorContext, initialColorGrid, keyboardColorContext, initialKeyboardColors} from "../gameLogic/letterGrid";
+import initialLetterGrid, {letterGridContext, letterColorContext, initialColorGrid, keyboardColorContext, initialKeyboardColors} from "../gameLogic/stateGrids";
 
 function App() {
 

@@ -1,6 +1,6 @@
 import './FlipCard.css';
 import {useContext} from "react";
-import {letterGridContext, letterColorContext} from "../../gameLogic/letterGrid";
+import {letterGridContext, letterColorContext} from "../../gameLogic/stateGrids";
 
 
 function FlipCard(props) {
