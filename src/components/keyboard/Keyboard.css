@@ -35,3 +35,13 @@
 #BACKSPACE {
     font-size: calc(var(--wordle-keyboard-font-size) - 0.25rem);
 }
+
+.green {
+    background: var(--wordle-correct);
+}
+.yellow {
+    background: var(--wordle-correct-wrong-position);
+}
+.grey {
+    background: var(--wordle-incorrect);
+}

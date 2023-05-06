@@ -1,26 +1,29 @@
 import "./Keyboard.css"
-function Keyboard() {
-    let rowOneLetters = ['q','w','e','r','t','y','u','i','o','p'];
-    let rowTwoLetters = ['a','s','d','f','g','h','j','k','l'];
-    let rowThreeLetters = ['enter', 'z','x','c','v','b','n','m','backspace'];
+import {keyboardColorContext, allOrderedKeys, rowOneKeys, rowTwoKeys, rowThreeKeys} from "../../gameLogic/stateGrids";
+import {useContext} from "react";
 
+function Keyboard() {
+
+    const colorContext = useContext(keyboardColorContext);
     function createLetterComponent(letter){
+
+        const displayColor = colorContext[allOrderedKeys.findIndex((x) => x === letter)];
         letter = letter.toUpperCase()
         return (
-            <button className={'keyboard-button'} id={letter} key={letter}>{letter}</button>
+            <button className={'keyboard-button '+displayColor} id={letter} key={letter}>{letter}</button>
         )
     }
 
     return (
         <div className={'keyboard-area'}>
             <div className={'keyboard-row row-1'}>
-                {rowOneLetters.map((letter) => createLetterComponent(letter))}
+                {rowOneKeys.map((letter) => createLetterComponent(letter))}
             </div>
             <div className={'keyboard-row row-2'}>
-                {rowTwoLetters.map((letter) => createLetterComponent(letter))}
+                {rowTwoKeys.map((letter) => createLetterComponent(letter))}
             </div>
             <div className={'keyboard-row row-3'}>
-                {rowThreeLetters.map((letter) => createLetterComponent(letter))}
+                {rowThreeKeys.map((letter) => createLetterComponent(letter))}
             </div>
         </div>
 

@@ -36,6 +36,12 @@
     justify-content: center;
 }
 
+
+.flipped {
+    /*transition-delay: calc(var(--animation-order) * 100ms);*/
+    transform: rotateX(180deg);
+}
+
 .flip-card .flip-card-back {
     transform: rotateX(180deg);
 }

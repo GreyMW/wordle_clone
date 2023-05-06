@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import initialLetterGrid, {initialColorGrid, initialKeyboardColors} from "./stateGrids";
+import initialLetterGrid, {initialColorGrid, initialKeyboardColors, allOrderedKeys} from "./stateGrids";
 import words from "./wordSelection";
 
 let gameState = {
@@ -157,8 +157,21 @@ function updateGridColor(setColorGrid){
             answerSet = new Set(answerCorrectLettersRemoved);
             gameState.colorGrid[gameState.row][index] = "yellow";
             newState[gameState.row][index] = "yellow";
+            setColorGrid(newState);
         }
     }
+
+    // animation delay, couldn't figure this out in css
+    // can't figure it out here either, get some weird bugs
+    // function animationDelay(col, col_max) {
+    //     newState[gameState.row][col] = gameState.colorGrid[gameState.row][col];
+    //     setColorGrid(newState);
+    //     console.log("delay working: " + col);
+    //     if (col !== col_max){
+    //         setTimeout(() => animationDelay(col+1, col_max), 1000);
+    //     }
+    // }
+    // animationDelay(0,gameState.max_col);
 
     setColorGrid(newState);
 }
@@ -169,6 +182,34 @@ function setCharAt(str,index,chr) {
 }
 function updateKeyboardColor(setKeyboardColorGrid){
 
+    let newState = structuredClone(gameState.keyboardColors);
+
+    let answerSet = new Set(gameState.answer);
+    console.log(answerSet)
+
+    for (let index in gameState.guess) {
+
+        if (gameState.guess[index] === gameState.answer[index]){
+            console.log("green");
+            console.log(allOrderedKeys);
+            let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
+            console.log("charIndex: " + charIndex);
+            newState[charIndex] = "green";
+            continue;
+        }
+
+        if (answerSet.has(gameState.guess[index])){
+            console.log("yellow");
+            let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
+            newState[charIndex] = "yellow";
+            continue;
+        }
+        let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
+        newState[charIndex] = "grey";
+    }
+    console.log(newState)
+    gameState.keyboardColors = newState;
+    setKeyboardColorGrid(newState);
 }
 
 function validateInput(event){
@@ -178,15 +219,4 @@ function validateInput(event){
     return [isLetter, isEnter, isBackspace]
 }
 
-function flip(event) {
-    // console.log(event.code);
-    // console.log(event);
-    const elementId = String(gameState.row) + String(gameState.col);
-    if (event.code === 'Enter') {
-        console.log('Enter pressed');
-        gameState.col += 1;
-        document.getElementById(elementId).classList.toggle('do-flip');
-    }
-}
-
-export {flip, useKeyboardListener};
+export {useKeyboardListener};
