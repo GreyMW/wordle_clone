@@ -12,17 +12,24 @@ let gameState = {
     letterGrid: initialLetterGrid,
     colorGrid: initialColorGrid,
     keyboardColors: initialKeyboardColors,
+    setGridState: function(){},
+    setColorGrid: function(){},
+    setKeyboardColorGrid: function(){},
     playable: true,
 }
 
 setAnswer();
 
-// const useKeyboardListener = (state) => {
-function useKeyboardListener(setGridState, setColorGrid, setKeyboardColorGrid) {
+function addGameStateSetters(setGridState, setColorGrid, setKeyboardColorGrid) {
+    gameState.setGridState = setGridState;
+    gameState.setColorGrid = setColorGrid;
+    gameState.setKeyboardColorGrid = setKeyboardColorGrid;
+}
+function useKeyboardListener() {
     useEffect(() => {
 
         function keyEventListener(e) {
-            handleKeyboardEvent(e, setGridState, setColorGrid, setKeyboardColorGrid)
+            handleKeyboardEvent(e)
         }
 
         window.addEventListener('keydown', keyEventListener);
@@ -33,7 +40,7 @@ function useKeyboardListener(setGridState, setColorGrid, setKeyboardColorGrid) {
     }, [])
 }
 
-function handleKeyboardEvent(event, setGridState, setColorGrid, setKeyboardColorGrid){
+function handleKeyboardEvent(event){
     if (!gameState.playable) {
         return;
     }
@@ -41,30 +48,30 @@ function handleKeyboardEvent(event, setGridState, setColorGrid, setKeyboardColor
     let [isLetter, isEnter,isBackspace ] = validateInput(event);
 
     if (isLetter) {
-        handleLetter(event.key.toUpperCase(), setGridState);
+        handleLetter(event.key.toUpperCase());
         return;
     }
 
     if (isEnter) {
-        handleEnter(setColorGrid, setKeyboardColorGrid);
+        handleEnter();
         return;
     }
 
     if (isBackspace) {
-        handleBackspace(setGridState);
+        handleBackspace();
     }
 
 }
 
-function handleLetter(key, setGridState) {
+function handleLetter(key) {
     if (gameState.guess.length < gameState.max_col + 1) {
         gameState.guess += key;
-        updateLetters(setGridState);
+        updateLetters();
         console.log("Added the letter to guess: " + gameState.guess);
     }
 }
 
-function handleEnter(setColorGrid, setKeyboardColorGrid) {
+function handleEnter() {
 
     if (gameState.guess.length !== 5) {
         //TODO: row wiggle and popup when not enough letters
@@ -73,18 +80,18 @@ function handleEnter(setColorGrid, setKeyboardColorGrid) {
     }
 
     console.log("Word submitted");
-    submitWord(setColorGrid, setKeyboardColorGrid);
+    submitWord();
 }
 
-function handleBackspace(setGridState) {
+function handleBackspace() {
     if (gameState.guess.length > 0) {
         gameState.guess = gameState.guess.slice(0,gameState.guess.length-1);
         console.log("Removed a letter from guess: " + gameState.guess);
-        updateLetters(setGridState);
+        updateLetters(gameState.setGridState);
     }
 }
 
-function updateLetters(setGridState) {
+function updateLetters() {
 
     const guessWithPadding = (gameState.guess + "     ").slice(0,5);
 
@@ -99,7 +106,7 @@ function updateLetters(setGridState) {
     //as if the values in the old array were just updated then it's still the same array but with new values.
     let newState = structuredClone(gameState.letterGrid);
 
-    setGridState(newState);
+    gameState.setGridState(newState);
 
 }
 
@@ -109,10 +116,10 @@ function setAnswer() {
     gameState.answer = words[randomNum].toUpperCase();
 }
 
-function submitWord(setColorGrid, setKeyboardColorGrid) {
+function submitWord() {
 
-    updateGridColor(setColorGrid);
-    updateKeyboardColor(setKeyboardColorGrid);
+    updateGridColor();
+    updateKeyboardColor();
 
     if (gameState.guess === gameState.answer) {
         console.log("You win!");
@@ -132,7 +139,7 @@ function submitWord(setColorGrid, setKeyboardColorGrid) {
 
 }
 
-function updateGridColor(setColorGrid){
+function updateGridColor(){
     let newState = structuredClone(gameState.colorGrid);
 
     gameState.colorGrid[gameState.row] = gameState.colorGrid[gameState.row].map(() => "grey");
@@ -157,7 +164,7 @@ function updateGridColor(setColorGrid){
             answerSet = new Set(answerCorrectLettersRemoved);
             gameState.colorGrid[gameState.row][index] = "yellow";
             newState[gameState.row][index] = "yellow";
-            setColorGrid(newState);
+            gameState.setColorGrid(newState);
         }
     }
 
@@ -173,14 +180,14 @@ function updateGridColor(setColorGrid){
     // }
     // animationDelay(0,gameState.max_col);
 
-    setColorGrid(newState);
+    gameState.setColorGrid(newState);
 }
 
 function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
     return str.substring(0,index) + chr + str.substring(index+1);
 }
-function updateKeyboardColor(setKeyboardColorGrid){
+function updateKeyboardColor(){
 
     let newState = structuredClone(gameState.keyboardColors);
 
@@ -203,7 +210,7 @@ function updateKeyboardColor(setKeyboardColorGrid){
         newState[charIndex] = "grey";
     }
     gameState.keyboardColors = newState;
-    setKeyboardColorGrid(newState);
+    gameState.setKeyboardColorGrid(newState);
 }
 
 function validateInput(event){
@@ -213,4 +220,4 @@ function validateInput(event){
     return [isLetter, isEnter, isBackspace]
 }
 
-export {useKeyboardListener};
+export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters};
