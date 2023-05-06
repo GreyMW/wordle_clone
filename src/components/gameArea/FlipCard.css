@@ -59,14 +59,17 @@
 
 .flip-card .letter-color-grey {
     background: var(--wordle-incorrect);
+    border-color: var(--wordle-incorrect);
 }
 
 .flip-card .letter-color-yellow {
     background: var(--wordle-correct-wrong-position);
+    border-color: var(--wordle-correct-wrong-position);
 }
 
 .flip-card .letter-color-green {
     background: var(--wordle-correct);
+    border-color: var(--wordle-correct);
 }
 
 .flip-card .red {

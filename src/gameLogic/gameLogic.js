@@ -185,21 +185,16 @@ function updateKeyboardColor(setKeyboardColorGrid){
     let newState = structuredClone(gameState.keyboardColors);
 
     let answerSet = new Set(gameState.answer);
-    console.log(answerSet)
 
     for (let index in gameState.guess) {
 
         if (gameState.guess[index] === gameState.answer[index]){
-            console.log("green");
-            console.log(allOrderedKeys);
             let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
-            console.log("charIndex: " + charIndex);
             newState[charIndex] = "green";
             continue;
         }
 
         if (answerSet.has(gameState.guess[index])){
-            console.log("yellow");
             let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
             newState[charIndex] = "yellow";
             continue;
@@ -207,7 +202,6 @@ function updateKeyboardColor(setKeyboardColorGrid){
         let charIndex = allOrderedKeys.findIndex((x) => x === gameState.guess[Number(index)].toLowerCase());
         newState[charIndex] = "grey";
     }
-    console.log(newState)
     gameState.keyboardColors = newState;
     setKeyboardColorGrid(newState);
 }
