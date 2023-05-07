@@ -235,6 +235,7 @@ function addGameOverModalSetter(setterFunc, setIsWinner){
 
 function resetGame(){
     console.log("reset");
+
     gameState.gameOverModal(false);
     gameState.row = 0;
     gameState.col = 0;
@@ -250,9 +251,6 @@ function resetGame(){
     gameState.setGridState(Array(6).fill(Array(5).fill("")));
     gameState.setColorGrid(Array(6).fill(Array(5).fill("")));
     gameState.setKeyboardColorGrid(Array(28).fill(""));
-
-
 }
-
 
 export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters, addGameOverModalSetter, resetGame};
