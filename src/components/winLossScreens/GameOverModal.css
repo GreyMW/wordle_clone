@@ -1,0 +1,31 @@
+dialog {
+    background: var(--wordle-incorrect);
+    border-radius: 10px;
+    border: 1px solid var(--wordle-unchosen);
+    width: 21%;
+    min-width: 150px;
+    top: -40%;
+    font-family: var(--font-play-area);
+}
+
+.game-over-container {
+    display: flex;
+    justify-content: center;
+    /*border: 1px solid red;*/
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.replay-button {
+    /*border: 1px solid red;*/
+    background-color: var(--wordle-correct);
+    border-radius: 10px;
+    /*margin: 0 auto;*/
+    padding: 0.5rem 1rem;
+
+
+
+}

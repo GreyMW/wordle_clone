@@ -17,6 +17,7 @@ let gameState = {
     setKeyboardColorGrid: function(){},
     playable: true,
     gameOverModal: function(){},
+    setIsWinner: function(){},
 }
 
 setAnswer();
@@ -74,9 +75,11 @@ function handleLetter(key) {
 
 function handleEnter() {
 
-    if (gameState.guess.length !== 5) {
+    if (gameState.guess.length !== gameState.max_col + 1) {
+
         //TODO: row wiggle and popup when not enough letters
         console.log("Not enough letters");
+        gameState.gameOverModal();
         return;
     }
 
@@ -88,7 +91,7 @@ function handleBackspace() {
     if (gameState.guess.length > 0) {
         gameState.guess = gameState.guess.slice(0,gameState.guess.length-1);
         console.log("Removed a letter from guess: " + gameState.guess);
-        updateLetters(gameState.setGridState);
+        updateLetters();
     }
 }
 
@@ -125,16 +128,18 @@ function submitWord() {
     if (gameState.guess === gameState.answer) {
         console.log("You win!");
         gameState.playable = false;
-        gameState.gameOverModal();
-        //TODO: function to handle winning
+        gameState.setIsWinner(true);
+        setTimeout(() => gameState.gameOverModal(true), 1000);
+        // gameState.gameOverModal(true);
         return;
     }
 
     if (gameState.row === gameState.max_row) {
         console.log("You lose!");
         gameState.playable = false;
-        gameState.gameOverModal();
-        //TODO: function to handle losing
+        gameState.setIsWinner(false);
+        setTimeout(() => gameState.gameOverModal(true), 1000);
+        // gameState.gameOverModal(true);
         return;
     }
     gameState.guess = "";
@@ -223,11 +228,31 @@ function validateInput(event){
     return [isLetter, isEnter, isBackspace]
 }
 
-function addGameOverModalSetter(setterFunc){
+function addGameOverModalSetter(setterFunc, setIsWinner){
     gameState.gameOverModal = setterFunc;
+    gameState.setIsWinner = setIsWinner;
+}
+
+function resetGame(){
+    console.log("reset");
+    gameState.gameOverModal(false);
+    gameState.row = 0;
+    gameState.col = 0;
+    gameState.guess = "";
+    gameState.letterGrid = Array(6).fill(Array(5).fill(""));
+    gameState.colorGrid = Array(6).fill(Array(5).fill(""));
+    gameState.keyboardColors = Array(28).fill("");
+    gameState.playable = true;
+
+    setAnswer();
+
+    //have to feed React a brand-new object for it to update for some reason.
+    gameState.setGridState(Array(6).fill(Array(5).fill("")));
+    gameState.setColorGrid(Array(6).fill(Array(5).fill("")));
+    gameState.setKeyboardColorGrid(Array(28).fill(""));
+
 
 }
 
 
-
-export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters, addGameOverModalSetter};
+export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters, addGameOverModalSetter, resetGame};

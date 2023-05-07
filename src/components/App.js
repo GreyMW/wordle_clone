@@ -12,10 +12,11 @@ function App() {
     const [letterGrid, setLetterGrid] = useState(initialLetterGrid);
     const [colorGrid, setColorGrid] = useState(initialColorGrid);
     const [keyboardColorGrid, setKeyboardColorGrid] =useState(initialKeyboardColors);
+    const [isWinner, setIsWinner] = useState(false);
 
     addGameStateSetters(setLetterGrid, setColorGrid, setKeyboardColorGrid);
     useKeyboardListener();
-    addGameOverModalSetter(modalToggle);
+    addGameOverModalSetter(modalToggle, setIsWinner);
 
     return (
         <div className="App">
@@ -31,16 +32,20 @@ function App() {
                 <Keyboard/>
             </keyboardColorContext.Provider>
 
-            <GameOverModal/>
+            <GameOverModal isWinner={isWinner}/>
         </div>
     );
 }
 
-function modalToggle() {
+function modalToggle(toggleShow) {
     //the React equivalent of this would be using a className, but the full functionality of this
     //is apparently bound to the function .showModal(), hence we have opted for this over the useState pattern
     const modal = document.querySelector(".game-over-modal");
-    modal.showModal();
+    if (toggleShow) {
+        modal.showModal();
+    }else {
+        modal.close();
+    }
 }
 
 
