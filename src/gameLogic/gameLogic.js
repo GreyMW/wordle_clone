@@ -16,6 +16,7 @@ let gameState = {
     setColorGrid: function(){},
     setKeyboardColorGrid: function(){},
     playable: true,
+    gameOverModal: function(){},
 }
 
 setAnswer();
@@ -124,6 +125,7 @@ function submitWord() {
     if (gameState.guess === gameState.answer) {
         console.log("You win!");
         gameState.playable = false;
+        gameState.gameOverModal();
         //TODO: function to handle winning
         return;
     }
@@ -131,6 +133,7 @@ function submitWord() {
     if (gameState.row === gameState.max_row) {
         console.log("You lose!");
         gameState.playable = false;
+        gameState.gameOverModal();
         //TODO: function to handle losing
         return;
     }
@@ -220,4 +223,11 @@ function validateInput(event){
     return [isLetter, isEnter, isBackspace]
 }
 
-export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters};
+function addGameOverModalSetter(setterFunc){
+    gameState.gameOverModal = setterFunc;
+
+}
+
+
+
+export {useKeyboardListener, handleKeyboardEvent, addGameStateSetters, addGameOverModalSetter};

@@ -2,8 +2,9 @@ import './App.css';
 import Header from "./header/Header";
 import GameArea from "./gameArea/GameArea";
 import Keyboard from "./keyboard/Keyboard";
-import {addGameStateSetters, useKeyboardListener} from "../gameLogic/gameLogic";
+import {addGameOverModalSetter, addGameStateSetters, useKeyboardListener} from "../gameLogic/gameLogic";
 import {useState} from "react";
+import GameOverModal from "./winLossScreens/GameOverModal";
 import initialLetterGrid, {letterGridContext, letterColorContext, initialColorGrid, keyboardColorContext, initialKeyboardColors} from "../gameLogic/stateGrids";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
     addGameStateSetters(setLetterGrid, setColorGrid, setKeyboardColorGrid);
     useKeyboardListener();
+    addGameOverModalSetter(modalToggle);
 
     return (
         <div className="App">
@@ -29,8 +31,17 @@ function App() {
                 <Keyboard/>
             </keyboardColorContext.Provider>
 
+            <GameOverModal/>
         </div>
     );
 }
+
+function modalToggle() {
+    //the React equivalent of this would be using a className, but the full functionality of this
+    //is apparently bound to the function .showModal(), hence we have opted for this over the useState pattern
+    const modal = document.querySelector(".game-over-modal");
+    modal.showModal();
+}
+
 
 export default App;
