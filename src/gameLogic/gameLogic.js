@@ -176,18 +176,8 @@ function updateGridColor(){
         }
     }
 
-    // animation delay, couldn't figure this out in css
-    // can't figure it out here either, get some weird bugs
-    // function animationDelay(col, col_max) {
-    //     newState[gameState.row][col] = gameState.colorGrid[gameState.row][col];
-    //     setColorGrid(newState);
-    //     console.log("delay working: " + col);
-    //     if (col !== col_max){
-    //         setTimeout(() => animationDelay(col+1, col_max), 1000);
-    //     }
-    // }
-    // animationDelay(0,gameState.max_col);
-
+    //I can't for the life of me wrap my head around these delay functions they just seem to randomly work
+    // setTimeout(() => gameState.setColorGrid(newState), 1000);
     gameState.setColorGrid(newState);
 }
 
